@@ -1,0 +1,30 @@
+---
+# tasks file for common
+# - name: update packages
+#   yum:
+- name: install utilities
+  yum: 
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - gcc-c++ 
+    - make
+- name: create nodejs curl
+  shell: curl -sL https://rpm.nodesource.com/setup_8.x | sudo -E bash - 
+- name: install nodejs nvm
+  yum:
+    name: nodejs
+    state: present     
+- name: Install pm2
+  npm:
+    name: pm2
+    global: yes
+- name: copy test.js
+  copy: 
+    src: test.js
+    dest: /home/ansible        
+- name: run nodejs
+  shell: pm2 start test.js
+  args:
+    chdir: /home/ansible

@@ -1,0 +1,4 @@
+---
+# vars file for we
+#webserver_dns_name: ec2-54-190-173-129.us-west-2.compute.amazonaws.com
+#appserver_ip: 54.190.173.129 
